@@ -1,0 +1,51 @@
+#include <Servo.h> 
+
+Servo doorServo;
+Servo fingerServo;
+
+int swPin = 2;               
+
+int pos = 0;
+int selectedMove = 0;             
+
+void setup()
+{
+  pinMode(swPin, INPUT);
+  doorServo.attach(9);           
+  fingerServo.attach(10);          
+  doorServo.write(80);           
+  fingerServo.write(0);            
+}
+
+
+void loop(){
+
+  
+  if(digitalRead(swPin) == HIGH)
+
+    for(pos = 80; pos < 155; pos += 3);  
+    {                                   
+    doorServo.write(pos);              
+    delay(15);                       
+    }
+   
+    for(pos = 0; pos < 129; pos += 6)  
+    {                                   
+    fingerServo.write(pos);               
+    delay(15);                       
+    }  
+    
+    for(pos = 129; pos>=0; pos-=6)      
+    {                                
+    fingerServo.write(pos);               
+    delay(15);                        
+    } 
+      
+    for(pos = 155; pos>=80; pos-=3)     
+    {                                
+    doorServo.write(pos);              
+    delay(15);                      
+    } 
+   } 
+     
+   
